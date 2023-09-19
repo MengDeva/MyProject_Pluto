@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Admin Pluto | Add Category</title>
+{% endblock %}
+<div class="container-fluid">
+    <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title">
+                <h2>Add New Category</h2>
+            </div>
+        </div>
+        <form method="post" action="/category/store" class="col-md-6">
+            <!--            {% for message in messages %}-->
+            <!--            {% if message.tags %}-->
+            <!--            <span>Successfully created</span>-->
+            <!--            {% endif %}-->
+            <!--            {% endfor %}-->
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Category Name</label>
+                <input type="text" class="form-control" name="txtName" required/>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+            <a href="/category" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

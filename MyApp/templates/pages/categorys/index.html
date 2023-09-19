@@ -1,0 +1,63 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Admin Pluto | Category List</title>
+{% endblock %}
+<div class="container-fluid">
+    <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title">
+                <h2>Category List</h2>
+            </div>
+        </div>
+        <div class="full graph_revenue">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inbox-head">
+                        <a class="main_bt" href="category/create">
+                            <i class="fa fa-plus-circle white_color"></i> Add New Category</a>
+                        <form action="#" class="pull-right position search_inbox">
+                            <div class="input-append">
+                                <input
+                                        type="search"
+                                        class="sr-input"
+                                        name="search"
+                                        placeholder="Search Category"
+                                />
+                                <button class="btn sr-btn" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover">
+                            <tr class="thead-light">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for col in categorys %}
+                            <tr>
+                                <td>{{ col.id }}</td>
+                                <td>{{ col.name }}</td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm"><span class="fa fa-eye"></span> View</a>
+                                    <a href="/category/edit/{{col.id}}" class="btn btn-primary btn-sm"><span
+                                            class="fa fa-pencil"></span> Edit</a>
+                                    <a href="/category/destroy/{{col.id}}" class="btn btn-danger btn-sm"><span
+                                            class="fa fa-trash-o"></span> Delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

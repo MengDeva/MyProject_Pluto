@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+{% block title %}
+<title>Admin Pluto | Users List</title>
+{% endblock %}
+<div class="container-fluid">
+    <div class="row column_title">
+        <div class="col-md-12">
+            <div class="page_title">
+                <h2>Users List</h2>
+            </div>
+        </div>
+        <div class="full graph_revenue">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inbox-head">
+                        <a class="main_bt" href="category/create">
+                            <i class="fa fa-plus-circle white_color"></i> Add New User</a>
+                        <form action="#" class="pull-right position search_inbox">
+                            <div class="input-append">
+                                <input
+                                        type="text"
+                                        class="sr-input"
+                                        placeholder="Search User"
+                                />
+                                <button class="btn sr-btn" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover">
+                            <tr class="thead-light">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Reason</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>ThongMengDeva</td>
+                                <td>19/09/2023</td>
+                                <td>Approved</td>
+                                <td>This is Admin</td>
+                                <td>
+                                    <a class="btn btn-warning btn-sm"><span class="fa fa-eye"></span> View</a>
+                                    <a class="btn btn-primary btn-sm" href="/category/edit/{{col.id}}"><span
+                                            class="fa fa-pencil"></span> Edit</a>
+                                    <a class="btn btn-danger btn-sm" href="/category/destroy/{{col.id}}"><span
+                                            class="fa fa-trash-o"></span> Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

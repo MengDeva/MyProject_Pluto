@@ -1,56 +1,47 @@
 {% extends "index.html" %} {% load static %} {% block content %}
-<style>
-  td {
-    color: black;
-  }
-
-  tr:hover td {
-    background-color: #eee;
-  }
-</style>
 <div class="container-fluid">
-  <div class="row column_title">
-    <div class="col-md-12">
-      <div class="page_title">
-        <h2>All Products</h2>
-      </div>
-    </div>
-    <div class="full graph_revenue">
-      <div class="row">
+    <div class="row column_title">
         <div class="col-md-12">
-          <div class="inbox-head">
-            <h3>All Products</h3>
-            <form action="#" class="pull-right position search_inbox">
-              <div class="input-append">
-                <input type="text" class="sr-input" placeholder="Search Product" />
-                <button class="btn sr-btn" type="button">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div class="table-responsive-sm">
-            <table class="table table-hover table-bordered">
-              <tr class="thead-dark">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Action</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Food</td>
-                <td>
-                  <a class="btn cur-p btn-warning btn-sm">View</a>
-                  <a class="btn cur-p btn-primary btn-sm">Edit</a>
-                  <a class="btn cur-p btn-danger btn-sm">Delete</a>
-                </td>
-              </tr>
-            </table>
-          </div>
+            <div class="page_title">
+                <h2>Products List</h2>
+            </div>
         </div>
-      </div>
+        <div class="full graph_revenue">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="inbox-head">
+                        <h3>All Products</h3>
+                        <form action="#" class="pull-right position search_inbox">
+                            <div class="input-append">
+                                <input type="text" class="sr-input" placeholder="Search Product"/>
+                                <button class="btn sr-btn" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive-sm">
+                        <table class="table table-hover table-bordered">
+                            <tr class="thead-light">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Food</td>
+                                <td>
+                                    <a class="btn cur-p btn-warning btn-sm">View</a>
+                                    <a class="btn cur-p btn-primary btn-sm">Edit</a>
+                                    <a class="btn cur-p btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock %}

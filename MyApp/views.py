@@ -11,4 +11,4 @@ def product(request):
 
 
 def user(request):
-    return render(request, "pages/user.html")
+    return render(request, "pages/users.html")
