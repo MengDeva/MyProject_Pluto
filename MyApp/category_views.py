@@ -1,3 +1,4 @@
+import datetime
 from django.core.checks import messages
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_GET
@@ -6,6 +7,7 @@ from MyApp.models import Category
 
 
 # Create your views here.
+pathFolder="pages/categorys/"
 def index(request):
     if 'search' in request.GET:
         search = request.GET['search']
@@ -13,11 +15,11 @@ def index(request):
     else:
         category = Category.objects.all()
     context = {'categorys': category}
-    return render(request, "pages/categorys/index.html", context)
+    return render(request,pathFolder + "index.html", context)
 
 
 def create(request):
-    return render(request, "pages/categorys/add_category.html")
+    return render(request, pathFolder + "add_category.html")
 
 
 def store(request):
@@ -26,7 +28,7 @@ def store(request):
         category.name = request.POST["txtName"]
         category.createBy = 1
         category.save()
-        messages.success(request, "Category Created")
+        messages.success(request,"Category Created")
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/category/create")
@@ -47,7 +49,7 @@ def edit(request, id):
         context = {"category": category}
     except Exception as ex:
         print("Error:" + str(ex))
-    return render(request, "pages/categorys/edit.html", context)
+    return render(request, pathFolder + "edit.html", context)
 
 
 def update(request):
@@ -58,7 +60,10 @@ def update(request):
         c1 = Category.objects.get(pk=category.id)
         if c1:
             c1.name = category.name;
+            c1.updateAt = datetime.datetime.now()
+            c1.updateBy = 1;
             c1.save()
+            messages.success(request,"Category Updated")
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/category/edit/" + category.id)

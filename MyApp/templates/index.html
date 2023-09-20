@@ -1,95 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- basic -->
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- mobile metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <!-- site metas -->
     {% block title %}
     <title>Admin Pluto | Dashboard</title>
-    {% endblock %}
-    {% load static %}
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    {% endblock %} {% load static %}
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <!-- site icon -->
-    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/png"/>
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/png" />
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <!-- site css -->
-    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
     <!-- responsive css -->
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
     <!-- color css -->
-    <link rel="stylesheet" href="{% static 'css/colors.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/colors.css' %}" />
     <!-- select bootstrap -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap-select.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.css' %}" />
     <!-- scrollbar css -->
-    <link rel="stylesheet" href="{% static 'css/perfect-scrollbar.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/perfect-scrollbar.css' %}" />
     <!-- custom css -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
+  </head>
 
-<body class="dashboard dashboard_1">
-<div class="full_container">
-    <div class="inner_container">
+  <body class="dashboard dashboard_1">
+    <div class="full_container">
+      <div class="inner_container">
         <!-- Sidebar  -->
         {% include "pages/sidebar.html" %}
         <!-- end sidebar -->
         <!-- right content -->
         <div id="content">
-            <!-- topbar -->
-            {% include "pages/topbar.html" %}
-            <!-- end topbar -->
-            <div class="midde_cont">
-                {% block content %}
-
-                {% endblock %}
-            </div>
+          <!-- topbar -->
+          {% include "pages/topbar.html" %}
+          <!-- end topbar -->
+          <div class="midde_cont">{% block content %} {% endblock %}</div>
         </div>
+      </div>
     </div>
-</div>
-<!-- footer -->
-<div class="container-fluid">
-    <div class="footer">
+    <!-- footer -->
+    <div class="container-fluid">
+      <div class="footer">
         <p>
-            Copyright © 2018 Designed by html.design. All rights
-            reserved.<br/><br/>
-            Distributed By:
-            <a href="https://themewagon.com/">ThemeWagon</a>
+          Copyright © 2018 Designed by html.design. All rights reserved.<br /><br />
+          Distributed By:
+          <a href="https://themewagon.com/">ThemeWagon</a>
         </p>
+      </div>
     </div>
-</div>
-<!-- jQuery -->
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<!-- wow animation -->
-<script src="{% static 'js/animate.js' %}"></script>
-<!-- select country -->
-<script src="{% static 'js/bootstrap-select.js' %}"></script>
-<!-- owl carousel -->
-<script src="{% static 'js/owl.carousel.js' %}"></script>
-<!-- chart js -->
-<script src="{% static 'js/Chart.min.js' %}"></script>
-<script src="{% static 'js/Chart.bundle.min.js' %}"></script>
-<script src="{% static 'js/utils.js' %}"></script>
-<script src="{% static 'js/analyser.js' %}"></script>
-<!-- nice scrollbar -->
-<script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
-<script>
-    var ps = new PerfectScrollbar("#sidebar");
-</script>
-<!-- custom js -->
-<script src="{% static 'js/custom.js' %}"></script>
-<script src="{% static 'js/chart_custom_style1.js' %}"></script>
-</body>
-
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- wow animation -->
+    <script src="{% static 'js/animate.js' %}"></script>
+    <!-- select country -->
+    <script src="{% static 'js/bootstrap-select.js' %}"></script>
+    <!-- owl carousel -->
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <!-- chart js -->
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+    <script src="{% static 'js/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/analyser.js' %}"></script>
+    <!-- nice scrollbar -->
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+    <script>
+      var ps = new PerfectScrollbar("#sidebar")
+    </script>
+    <!-- custom js -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/chart_custom_style1.js' %}"></script>
+  </body>
 </html>
