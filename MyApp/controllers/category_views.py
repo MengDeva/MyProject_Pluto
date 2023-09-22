@@ -1,9 +1,9 @@
 import datetime
-from django.core.checks import messages
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_GET
 
-from MyApp.models import Category
+from MyApp.models.models import Category
 
 
 # Create your views here.
@@ -19,7 +19,8 @@ def index(request):
 
 
 def create(request):
-    return render(request, pathFolder + "add_category.html")
+
+    return render(request, pathFolder + "add_product.html")
 
 
 def store(request):
@@ -27,11 +28,12 @@ def store(request):
         category = Category()
         category.name = request.POST["txtName"]
         category.createBy = 1
+        messages.success(request, "Category Created")
         category.save()
-        messages.success(request,"Category Created")
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/category/create")
+
 
 
 def destroy(request, id):

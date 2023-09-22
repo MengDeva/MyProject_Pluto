@@ -9,7 +9,7 @@ def index(request):
     return render(request, "pages/users/index.html")
 
 # def create(request):
-#     return render(request, "pages/categorys/add_category.html")
+#     return render(request, "pages/categorys/add_product.html")
 #
 #
 # def store(request):

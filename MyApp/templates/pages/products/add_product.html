@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% block title %}
-<title>Admin Pluto | Add Category</title>
+<title>Admin Pluto | Add Product</title>
 {% endblock %}
 <script>
     function confirmDelete(){
@@ -13,17 +13,17 @@
     <div class="row column_title">
         <div class="col-md-12">
             <div class="page_title">
-                <h2>Add New Category</h2>
+                <h2>Add New Product</h2>
             </div>
         </div>
-        <form method="post" action="/category/store" class="col-md-6">
+        <form method="post" action="/product/store" class="col-md-6">
             {% csrf_token %}
             <div class="mb-3">
-                <label class="form-label">Category Name</label>
+                <label class="form-label">Product Name</label>
                 <input type="text" class="form-control" name="txtName" required/>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
-            <a href="/category" class="btn btn-danger">Cancel</a>
+            <a href="/product" class="btn btn-danger">Cancel</a>
         </form>
         {% for message in messages %}
         <span class="color:green">{{ message }}</span>
