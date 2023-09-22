@@ -1,8 +1,5 @@
-{% extends "index.html" %}
-{% load static %}
-{% block content %}
-{% block title %}
-<title>Admin Pluto | Product List</title>
+{% extends "index.html" %} {% load static %} {% block content %} {% block title %}
+<title>Admin Pluto | Product Form</title>
 {% endblock %}
 <div class="container-fluid">
     <div class="row column_title">
@@ -15,16 +12,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="inbox-head">
-                        <a class="main_bt" href="product/create">
-                            <i class="fa fa-plus-circle white_color"></i> Add New Product</a>
+                        <a class="main_bt" href="product/create"> <i class="fa fa-plus-circle white_color"></i> Add New
+                            Product</a>
                         <form action="#" class="pull-right position search_inbox">
                             <div class="input-append">
-                                <input
-                                        type="search"
-                                        class="sr-input"
-                                        name="search"
-                                        placeholder="Search Product"
-                                />
+                                <input type="search" class="sr-input" name="search" placeholder="Search Product"/>
                                 <button class="btn sr-btn" type="button">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -46,7 +38,9 @@
                                 <td>{{ col.id }}</td>
                                 <td>{{ col.name }}</td>
                                 <td>{{ col.unitPrice }}</td>
-                                <td>{{ col.name }}</td>
+                                <td>
+                                    <img src="/media/{{col.photo}}" alt="">
+                                </td>
                                 <td>
                                     <a class="btn btn-warning btn-sm"><span class="fa fa-eye"></span> View</a>
                                     <a href="/product/edit/{{col.id}}" class="btn btn-primary btn-sm"><span

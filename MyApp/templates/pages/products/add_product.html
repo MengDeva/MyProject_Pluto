@@ -1,12 +1,9 @@
-{% extends "index.html" %}
-{% load static %}
-{% block content %}
-{% block title %}
+{% extends "index.html" %} {% load static %} {% block content %} {% block title %}
 <title>Admin Pluto | Add Product</title>
 {% endblock %}
 <script>
-    function confirmDelete(){
-        return confirm("Are you sure you want to delete this record?");
+    function confirmDelete() {
+      return confirm("Are you sure you want to delete this record?")
     }
 </script>
 <div class="container-fluid">
@@ -20,7 +17,36 @@
             {% csrf_token %}
             <div class="mb-3">
                 <label class="form-label">Product Name</label>
-                <input type="text" class="form-control" name="txtName" required/>
+                <input type="text" class="form-control" name="txtName" required
+                       placeholder="Product Name"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Barcode</label>
+                <input type="text" class="form-control" name="txtBarcode" required placeholder="Barcode"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Unit Price</label>
+                <input type="text" class="form-control" name="txtUnitPrice" required
+                       placeholder="Unit Price"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <input type="text" class="form-control" name="txtQty" required
+                       placeholder="Quantity"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Photo</label>
+                <input type="file" class="form-control" name="file"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Category Name</label>
+                <div>
+                    <select class="form-control">
+                        {% for col in categorys %}
+                        <option>{{col.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
             <a href="/product" class="btn btn-danger">Cancel</a>

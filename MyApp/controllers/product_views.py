@@ -3,11 +3,12 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_GET
 
-from MyApp.models.models import Product
-
+from MyApp.models.models import Product, Category
 
 # Create your views here.
-pathFolder="pages/products/"
+pathFolder = "pages/products/"
+
+
 def index(request):
     if 'search' in request.GET:
         search = request.GET['search']
@@ -15,11 +16,13 @@ def index(request):
     else:
         product = Product.objects.all()
     context = {'products': product}
-    return render(request,pathFolder + "index.html", context)
+    return render(request, pathFolder + "index.html", context)
+
 
 def create(request):
-
-    return render(request, pathFolder + "add_product.html")
+    category = Category.objects.all()
+    context = {"categorys": category}
+    return render(request, pathFolder + "add_product.html", context)
 
 
 def store(request):
@@ -32,7 +35,6 @@ def store(request):
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/product/create")
-
 
 
 def destroy(request, id):
@@ -64,7 +66,7 @@ def update(request):
             c1.updateAt = datetime.datetime.now()
             c1.updateBy = 1;
             c1.save()
-            messages.success(request,"product Updated")
+            messages.success(request, "product Updated")
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/product/edit/" + product.id)
