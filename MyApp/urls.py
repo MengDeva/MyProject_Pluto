@@ -1,11 +1,13 @@
 from django.urls import path
 from . import views, user_views
 from .controllers import category_views,product_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.dashboard),
     path("dashboard", views.dashboard, name="dashboard"),
-path("user", user_views.index),
+    path("user", user_views.index),
     path("users", views.user),
     #------Category------#
     path("category", category_views.index),
@@ -22,3 +24,5 @@ path("user", user_views.index),
     path("product/edit/<id>", product_views.edit),
     path("product/update", product_views.update),
 ]
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

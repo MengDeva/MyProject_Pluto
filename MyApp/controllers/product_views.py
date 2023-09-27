@@ -1,7 +1,7 @@
 import datetime
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 
 from MyApp.models.models import Product, Category
 
@@ -24,11 +24,16 @@ def create(request):
     context = {"categorys": category}
     return render(request, pathFolder + "add_product.html", context)
 
-
+@require_POST
 def store(request):
     try:
         product = Product()
         product.name = request.POST["txtName"]
+        product.barcode = request.POST["txtBarcode"]
+        product.unitPrice = request.POST["txtUnitPrice"]
+        product.qtyInstock = request.POST["txtQty"]
+        product.photo = request.FILES['file']
+        product.category_id = request.POST["ddlCategoryID"]
         product.createBy = 1
         messages.success(request, "product Created")
         product.save()

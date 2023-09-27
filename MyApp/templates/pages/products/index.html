@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="inbox-head">
-                        <a class="main_bt" href="product/create"> <i class="fa fa-plus-circle white_color"></i> Add New
+                        <a class="main_bt" href="product/create"><i class="fa fa-plus-circle white_color"></i> Add New
                             Product</a>
                         <form action="#" class="pull-right position search_inbox">
                             <div class="input-append">
@@ -29,6 +29,7 @@
                             <tr class="thead-light">
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Qty</th>
                                 <th>Unit Price</th>
                                 <th>Photo</th>
                                 <th>Action</th>
@@ -37,9 +38,10 @@
                             <tr>
                                 <td>{{ col.id }}</td>
                                 <td>{{ col.name }}</td>
+                                <td>{{ col.qtyInstock }}</td>
                                 <td>{{ col.unitPrice }}</td>
                                 <td>
-                                    <img src="/media/{{col.photo}}" alt="">
+                                    <img src="/media/{{col.photo}}" width="50"/>
                                 </td>
                                 <td>
                                     <a class="btn btn-warning btn-sm"><span class="fa fa-eye"></span> View</a>
