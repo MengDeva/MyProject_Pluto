@@ -10,12 +10,11 @@ class Category(models.Model):
     updateBy = models.IntegerField(null=True, blank=True)
     createAt = models.DateTimeField(auto_now_add=datetime.datetime.now())
     updateAt = models.DateTimeField(null=True, blank=True)
-
     def __str__(self):
         return self.name
 
-
 class Product(models.Model):
+    objects=models.Manager()
     name = models.CharField(max_length=20, unique=True, null=True, blank=True)
     barcode = models.BigIntegerField(null=True, unique=True)
     unitPrice = models.FloatField()
@@ -26,6 +25,8 @@ class Product(models.Model):
     updateBy = models.IntegerField(null=True, blank=True)
     createAt = models.DateTimeField(auto_now_add=datetime.datetime.now())
     updateAt = models.DateTimeField(null=True, blank=True)
+    def __str__(self):
+        return self.name
 
 # class User(models.Model):
 #     username = models.CharField()

@@ -30,13 +30,27 @@ def store(request):
         product = Product()
         product.name = request.POST["txtName"]
         product.barcode = request.POST["txtBarcode"]
+        p1=Product.objects.filter(name=product.name)
+        if p1:
+            messages.success(request,"Product Name has been Used")
+            return redirect("/product/create")
+        p2 = Product.objects.filter(name=product.barcode)
+        if p2:
+            messages.success(request,"Barcode has been Used")
+            return redirect("/product/create")
         product.unitPrice = request.POST["txtUnitPrice"]
         product.qtyInstock = request.POST["txtQty"]
         product.photo = request.FILES['file']
         product.category_id = request.POST["ddlCategoryID"]
         product.createBy = 1
-        messages.success(request, "product Created")
-        product.save()
+        if len(request.FILES)>0:
+            product.photo = request.FILES['file']
+            product.save()
+            messages.success(request, "Product Created")
+        else:
+            product.photo = ""
+            product.save()
+            messages.success(request, "Product Created")
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/product/create")
@@ -45,7 +59,11 @@ def store(request):
 def destroy(request, id):
     try:
         product = Product.objects.get(pk=id)
-        product.delete()
+        if product.photo:
+            product.photo.delete()
+            product.delete()
+        else:
+            product.delete()
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/product")
@@ -54,7 +72,8 @@ def destroy(request, id):
 def edit(request, id):
     try:
         product = Product.objects.get(pk=id)
-        context = {"product": product}
+        category = Category.objects.all()
+        context = {"product": product,"categorys": category}
     except Exception as ex:
         print("Error:" + str(ex))
     return render(request, pathFolder + "edit.html", context)
@@ -65,13 +84,30 @@ def update(request):
         product = Product()
         product.id = request.POST["txtId"]
         product.name = request.POST["txtName"]
-        c1 = product.objects.get(pk=product.id)
-        if c1:
-            c1.name = product.name;
-            c1.updateAt = datetime.datetime.now()
-            c1.updateBy = 1;
-            c1.save()
-            messages.success(request, "product Updated")
+        product.barcode = request.POST["txtBarcode"]
+        product.unitPrice = request.POST["txtUnitPrice"]
+        product.qtyInstock = request.POST["txtQty"]
+        product.category_id = request.POST["ddlCategoryID"]
+        product.createBy=1
+        product.updateAt=datetime.datetime.now()
+        p1 = Product.objects.get(pk=product.id)
+        if p1:
+            if p1.photo:
+                p1.name = product.name
+                p1.barcode = product.barcode
+                p1.unitPrice=product.unitPrice
+                p1.qtyInstock=product.qtyInstock
+                p1.category_id=product.category_id
+                p1.updateBy = product.updateBy
+                p1.updateAt = product.updateAt
+                if len(request.FILES)>0:
+                    p1.photo.delete()
+                    p1.photo=request.FILES["file"]
+                    p1.save()
+                    messages.success(request,"Product Updated")
+                else:
+                    p1.save()
+                    messages.success(request, "product Updated")
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/product/edit/" + product.id)
