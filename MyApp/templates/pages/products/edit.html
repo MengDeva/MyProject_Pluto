@@ -29,14 +29,22 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Photo</label>
-                <input type="file" class="form-control" name="file" />
+                <div class="mb-3">
+                    {% if product.photo %}
+                        <img src="{{ product.photo.url }}" alt="image here" class="prod-size">
+                    {% endif %}
+                </div>
+                <input type="file" class="form-control" name="file" value="{{product.photo.url}}"/>
             </div>
             <div class="mb-3">
         <label class="form-label">Category Name</label>
         <div>
           <select class="form-control" name="ddlCategoryID">
             {% for col in categorys %}
-            <option value="{{ col.id }}">{{col.name}}</option>
+              {% if col.id == product.category_id %}
+              <option value="{{ col.id }}" selected>{{col.name}}</option>
+              {% endif %}
+              <option value="{{ col.id }}">{{col.name}}</option>
             {% endfor %}
           </select>
         </div>
