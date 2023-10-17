@@ -29,12 +29,12 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Photo</label>
-                <div class="mb-3">
-                    {% if product.photo %}
-                        <img src="{{ product.photo.url }}" alt="image here" class="prod-size">
-                    {% endif %}
-                </div>
-                <input type="file" class="form-control" name="file" value="{{product.photo.url}}"/>
+<!--                <div class="mb-3">-->
+<!--                    {% if product.photo %}-->
+<!--                        <img src="{{ product.photo.url }}" alt="image here" class="prod-size">-->
+<!--                    {% endif %}-->
+<!--                </div>-->
+                <input type="file" class="form-control" name="file"/>
             </div>
             <div class="mb-3">
         <label class="form-label">Category Name</label>

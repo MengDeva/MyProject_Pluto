@@ -2,7 +2,7 @@ import datetime
 import os
 
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_GET, require_POST
 
 from MyApp.models.models import Product, Category
@@ -35,7 +35,7 @@ def store(request):
         product.barcode = request.POST["txtBarcode"]
         p1=Product.objects.filter(name=product.name)
         if p1:
-            messages.success(request,"Product Name has been Used")
+            messages.success(request,"Product Name has been already Used")
             return redirect("/product/create")
         p2 = Product.objects.filter(name=product.barcode)
         if p2:
@@ -80,6 +80,61 @@ def edit(request, id):
         print("Error:" + str(ex))
     return render(request, pathFolder + "edit.html", context)
 
+@require_POST
+def update(request):
+    try:
+        product = Product()
+        product.id=request.POST["txtId"]
+        product.name = request.POST["txtName"]
+        product.barcode = request.POST["txtBarcode"]
+        product.unitPrice = request.POST["txtUnitPrice"]
+        product.qtyInstock = request.POST["txtQty"]
+        product.photo = request.POST["file"]
+        product.category_id = request.POST["ddlCategoryID"]
+        product.updateBy = 2
+        product.updateAt=datetime.datetime.now()
+        p1=Product.objects.get(pk=product.id)
+        if p1:
+            if p1.photo:
+                p1.name=product.name
+                p1.barcode=product.barcode
+                p1.unitPrice=product.unitPrice
+                p1.qtyInstock=product.qtyInstock
+                p1.category_id=product.category_id
+                p1.updateBy=product.updateBy
+                p1.updateAt=product.updateAt
+                if len(request.FILES)>0:
+                    p1.photo.delete()
+                    p1.photo = request.FILES["file"]
+                    p1.save()
+                    messages.success(request, "Product Updated")
+                else:
+                    p1.save()
+                    messages.success(request, "Product Updated")
+            else:
+                p1.name = product.name
+                p1.barcode = product.barcode
+                p1.unitPrice = product.unitPrice
+                p1.qtyInstock = product.qtyInstock
+                p1.category_id = product.category_id
+                p1.updateBy = product.updateBy
+                p1.updateAt = product.updateAt
+                if len(request.FILES) > 0:
+                    p1.photo = request.FILES["file"]
+                    p1.save()
+                    messages.success(request, "Product Updated")
+                else:
+                    p1.save()
+                    messages.success(request, "Product Updated")
+    except Exception as ex:
+        print("Error:" + str(ex))
+    return redirect("/product/edit/" + product.id)
+
 @require_GET
-def update(request,id):
-    return render(request, pathFolder + "edit.html", context)
+def view(request,id):
+    try:
+        product = Product.objects.select_related("category").get(pk=id)
+        context={"product":product}
+    except Exception as ex:
+        print("Error:"+str(ex))
+    return render(request,pathFolder + "view.html", context)

@@ -1,0 +1,56 @@
+{% extends "index.html" %} {% load static %} {% block content %} {% block title %}
+<title>Admin Pluto | Product Detail</title>
+{% endblock %}
+<div class="container-fluid">
+  <div class="row column_title">
+    <div class="col-md-12">
+      <div class="page_title">
+        <h2>Product Detail</h2>
+      </div>
+    </div>
+    <form method="post" action="/product/store" class="col-md-6" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="mb-3">
+        <input type="hidden" class="form-control" name="txtId" value="{{product.id}}"/>
+        <label class="form-label">Product Name</label>
+        <input type="text" class="form-control" name="txtName" value="{{product.name}}"/>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Barcode</label>
+        <input type="text" class="form-control" name="txtBarcode" value="{{product.barcode}}" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Unit Price</label>
+        <input type="text" class="form-control" name="txtUnitPrice" value="{{product.unitPrice}}" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Quantity</label>
+        <input type="text" class="form-control" name="txtQty" value="{{product.qtyInstock}}" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Photo</label>
+        <div class="mb-3">
+          {% if product.photo %}
+            <img src="{{ product.photo.url }}" alt="image here" class="prod-size">
+          {% endif %}
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Category Name</label>
+        <div>
+          <select class="form-control" name="ddlCategoryID">
+            {% for col in categorys %}
+            <option value="{{ col.id }}">{{col.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+      <a href="/product" class="btn btn-danger">Cancel</a>
+    </form>
+    {% for message in messages %}
+    <span class="color:green">{{ message }}</span>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
