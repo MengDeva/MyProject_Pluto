@@ -130,29 +130,6 @@ def update(request):
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/product/edit/" + product.id)
-# def update(request,id):
-#         product = Product.objects.get(id=id)
-#         try:
-#             if request.method == 'POST':
-#                 product.id=request.POST['txtId']
-#                 product.name = request.POST['name']
-#                 product.barcode = request.POST["barcode"]
-#                 product.unitprice = request.POST["unitprice"]
-#                 product.qtyInstock = request.POST["instock"]
-#                 product.Category = request.POST['selectitem']
-#                 product.update_date = datetime.now()
-#                 if len(request.FILES) != 0:
-#                     if len(product.photo) > 0:
-#                         os.remove(product.photo.path)
-#                     product.photo = request.FILES['photo']
-#             product.save()
-#             messages.success(request,"Product Updated.")
-#             return redirect('/product_table')
-#         except IntegrityError as e:
-#             print("Error:" + str(e))
-#             messages.warning(request,str(e))
-#         return redirect('/product_table')
-
 @require_GET
 def view(request,id):
     try:

@@ -20,7 +20,7 @@ def index(request):
 
 def create(request):
 
-    return render(request, pathFolder + "add_product.html")
+    return render(request, pathFolder + "add_category.html")
 
 
 def store(request):
