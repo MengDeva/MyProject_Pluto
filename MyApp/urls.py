@@ -20,10 +20,11 @@ urlpatterns = [
     path("product/create", product_views.create),
     path("product/store", product_views.store),
     path("product/destroy/<id>", product_views.destroy),
-    path("product/edit/<id>", product_views.edit),
+    path("product/edit/<int:id>", product_views.edit),
     path("product/update", product_views.update),
     path("product/view/<id>", product_views.view),
     path("logins",users_views.login_view),
+    path("user",views.user),
 ]
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

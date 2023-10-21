@@ -40,7 +40,10 @@
         <div>
           <select class="form-control" name="ddlCategoryID">
             {% for col in categorys %}
-            <option value="{{ col.id }}">{{col.name}}</option>
+              {% if col.id == product.category_id %}
+              <option value="{{ col.id }}" selected>{{col.name}}</option>
+              {% endif %}
+              <option value="{{ col.id }}">{{col.name}}</option>
             {% endfor %}
           </select>
         </div>

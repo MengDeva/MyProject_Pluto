@@ -8,10 +8,12 @@
                 <h2>Edit Product</h2>
             </div>
         </div>
-        <form method="post" action="/product/update" class="col-md-6">
+        <form method="POST" action="/product/update" class="col-md-6" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
                 <input type="hidden" class="form-control" name="txtId" value="{{product.id}}"/>
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Product Name</label>
                 <input type="text" class="form-control" name="txtName" value="{{product.name}}" required/>
             </div>
@@ -29,26 +31,26 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Photo</label>
-<!--                <div class="mb-3">-->
-<!--                    {% if product.photo %}-->
-<!--                        <img src="{{ product.photo.url }}" alt="image here" class="prod-size">-->
-<!--                    {% endif %}-->
-<!--                </div>-->
+                <div class="mb-3">
+                    {% if product.photo %}
+                        <img src="{{ product.photo.url }}" alt="image here" class="prod-size">
+                    {% endif %}
+                </div>
                 <input type="file" class="form-control" name="file"/>
             </div>
             <div class="mb-3">
-        <label class="form-label">Category Name</label>
-        <div>
-          <select class="form-control" name="ddlCategoryID">
-            {% for col in categorys %}
-              {% if col.id == product.category_id %}
-              <option value="{{ col.id }}" selected>{{col.name}}</option>
-              {% endif %}
-              <option value="{{ col.id }}">{{col.name}}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
+                <label class="form-label">Category Name</label>
+                <div>
+                  <select class="form-control" name="ddlCategoryID">
+                    {% for col in categorys %}
+                      {% if col.id == product.category_id %}
+                      <option value="{{ col.id }}" selected>{{col.name}}</option>
+                      {% endif %}
+                      <option value="{{ col.id }}">{{col.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
             <button type="submit" class="btn btn-success">Update</button>
             <a href="/product" class="btn btn-danger">Cancel</a>
         </form>

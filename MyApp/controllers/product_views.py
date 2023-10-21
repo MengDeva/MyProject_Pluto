@@ -1,6 +1,6 @@
-import datetime
+from datetime import datetime
 import os
-
+from django.db import IntegrityError
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_GET, require_POST
@@ -89,10 +89,9 @@ def update(request):
         product.barcode = request.POST["txtBarcode"]
         product.unitPrice = request.POST["txtUnitPrice"]
         product.qtyInstock = request.POST["txtQty"]
-        product.photo = request.POST["file"]
         product.category_id = request.POST["ddlCategoryID"]
         product.updateBy = 2
-        product.updateAt=datetime.datetime.now()
+        product.updateAt=datetime.now()
         p1=Product.objects.get(pk=product.id)
         if p1:
             if p1.photo:
@@ -120,7 +119,9 @@ def update(request):
                 p1.updateBy = product.updateBy
                 p1.updateAt = product.updateAt
                 if len(request.FILES) > 0:
-                    p1.photo = request.FILES["file"]
+                    if len(product.photo) > 0:
+                        os.remove(product.photo.path)
+                    product.photo = request.FILES['file']
                     p1.save()
                     messages.success(request, "Product Updated")
                 else:
@@ -129,12 +130,35 @@ def update(request):
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/product/edit/" + product.id)
+# def update(request,id):
+#         product = Product.objects.get(id=id)
+#         try:
+#             if request.method == 'POST':
+#                 product.id=request.POST['txtId']
+#                 product.name = request.POST['name']
+#                 product.barcode = request.POST["barcode"]
+#                 product.unitprice = request.POST["unitprice"]
+#                 product.qtyInstock = request.POST["instock"]
+#                 product.Category = request.POST['selectitem']
+#                 product.update_date = datetime.now()
+#                 if len(request.FILES) != 0:
+#                     if len(product.photo) > 0:
+#                         os.remove(product.photo.path)
+#                     product.photo = request.FILES['photo']
+#             product.save()
+#             messages.success(request,"Product Updated.")
+#             return redirect('/product_table')
+#         except IntegrityError as e:
+#             print("Error:" + str(e))
+#             messages.warning(request,str(e))
+#         return redirect('/product_table')
 
 @require_GET
 def view(request,id):
     try:
         product = Product.objects.select_related("category").get(pk=id)
-        context={"product":product}
+        category = Category.objects.all()
+        context = {"product": product,"categorys": category}
     except Exception as ex:
         print("Error:"+str(ex))
     return render(request,pathFolder + "view.html", context)

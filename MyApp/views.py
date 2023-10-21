@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-@login_required(login_url="/logins")
+#@login_required(login_url="/logins")
 # Create your views here.
 def dashboard(request):
     return render(request, "pages/dashboard.html")
@@ -12,4 +12,4 @@ def product(request):
 
 
 def user(request):
-    return render(request, "pages/users.html")
+    return render(request, "pages/users/index.html")
