@@ -4,9 +4,10 @@ from .controllers import category_views,product_views
 from .controllers import users_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_view
 
 urlpatterns = [
-    path("", views.dashboard),
+    path("", views.dashboard, name="dashboard"),
     path("dashboard", views.dashboard, name="dashboard"),
     #------Category------#
     path("category", category_views.index),
@@ -25,6 +26,8 @@ urlpatterns = [
     path("product/view/<id>", product_views.view),
     path("logins",users_views.login_view),
     path("user",views.user),
-]
+    path("logins/",users_views.login_view),
+
+    #path("logins/",auth_view.LoginView.as_view(template_name='pages/users/login.html'),name='login'),
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
