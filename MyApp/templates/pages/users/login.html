@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+      <title>Pluto - Login</title>
       {% load static %}
       <meta name="keywords" content="">
       <meta name="description" content="">
@@ -45,16 +45,16 @@
                      </div>
                   </div>
                   <div class="login_form">
-                     <form action="/logins" method="post">
+                     <form method="POST" action="logins">
                         {% csrf_token %}
                         <fieldset>
                            <div class="field">
                               <label class="label_field">Username</label>
-                              <input type="text" name="txtUsername" placeholder="Username" />
+                              <input type="text" name="txtUserName" placeholder="Username" required/>
                            </div>
                            <div class="field">
                               <label class="label_field">Password</label>
-                              <input type="password" name="txtPassword" placeholder="Password" />
+                              <input type="password" name="txtPassword" placeholder="Password" required/>
                            </div>
                            <div class="field">
                               <label class="label_field hidden">hidden label</label>
@@ -63,7 +63,7 @@
                            </div>
                            <div class="field margin_0">
                               <label class="label_field hidden">hidden label</label>
-                              <button class="main_bt">Sign In</button>
+                              <button type="submit" class="main_bt">Sign In</button>
                            </div>
                         </fieldset>
                         {% for message in messages %}

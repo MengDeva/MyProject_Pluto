@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
@@ -5,7 +6,6 @@ from django.shortcuts import render
 # Create your views here.
 def dashboard(request):
     return render(request, "pages/dashboard.html")
-
 
 def product(request):
     return render(request, "pages/product.html")
