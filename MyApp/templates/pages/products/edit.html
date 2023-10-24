@@ -33,7 +33,7 @@
                 <label class="form-label">Photo</label>
                 <div class="mb-3">
                     {% if product.photo %}
-                        <img src="{{ product.photo.url }}" alt="image here" class="prod-size">
+                        <img src="{{ product.photo.url }}" alt="image here" width="120">
                     {% endif %}
                 </div>
                 <input type="file" class="form-control" name="file"/>
@@ -54,9 +54,6 @@
             <button type="submit" class="btn btn-success">Update</button>
             <a href="/product" class="btn btn-danger">Cancel</a>
         </form>
-        {% for message in messages %} {% if message.tags %}
-        <span class="color:green">{{ message }}</span>
-        {% endif %} {% endfor %}
     </div>
 </div>
 {% endblock %}

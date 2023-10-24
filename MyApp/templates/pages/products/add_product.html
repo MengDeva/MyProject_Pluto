@@ -43,9 +43,13 @@
       <button type="submit" class="btn btn-success">Submit</button>
       <a href="/product" class="btn btn-danger">Cancel</a>
     </form>
-    {% for message in messages %}
-    <span class="color:green">{{ message }}</span>
-    {% endfor %}
   </div>
 </div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
+      <script>
+         {% for message in messages %}
+            Swal.fire('{{ message }}');
+         {% endfor %}
+      </script>
 {% endblock %}

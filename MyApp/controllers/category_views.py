@@ -40,6 +40,7 @@ def destroy(request, id):
     try:
         category = Category.objects.get(pk=id)
         category.delete()
+        #messages.success(request, "Category Deleted")
     except Exception as ex:
         print("Error:" + str(ex))
     return redirect("/category")
@@ -68,4 +69,4 @@ def update(request):
             messages.success(request,"Category Updated")
     except Exception as ex:
         print("Error:" + str(ex))
-    return redirect("/category/edit/" + category.id)
+    return redirect("/category")

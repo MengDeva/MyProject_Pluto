@@ -129,7 +129,7 @@ def update(request):
                     messages.success(request, "Product Updated")
     except Exception as ex:
         print("Error:" + str(ex))
-    return redirect("/product/edit/" + product.id)
+    return redirect("/product")
 @require_GET
 def view(request,id):
     try:
